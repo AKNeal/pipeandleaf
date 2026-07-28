@@ -25,6 +25,19 @@ a{color:inherit}
 .btn-ghost:hover{border-color:var(--olive-bright);color:var(--olive-bright)}
 body.gated{overflow:hidden}
 
+/* Demo banner */
+#demo-banner{position:fixed;left:0;right:0;bottom:0;z-index:120;background:#b3801f;color:#1d1400;
+  font-family:'Oswald',sans-serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  text-align:center;padding:10px 44px;box-shadow:0 -4px 18px rgba(0,0,0,.4);line-height:1.5}
+#demo-banner strong{font-weight:600}
+#demo-banner .sub{display:block;letter-spacing:.06em;text-transform:none;font-family:'Inter',sans-serif;font-size:.76rem;opacity:.82;margin-top:2px}
+#demo-banner button{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;
+  color:#1d1400;font-size:1.1rem;cursor:pointer;padding:4px 8px;line-height:1;opacity:.7}
+#demo-banner button:hover{opacity:1}
+body{padding-bottom:64px}
+@media(max-width:640px){#demo-banner{font-size:.68rem;padding:9px 40px}body{padding-bottom:78px}}
+@media print{#demo-banner{display:none}}
+
 /* Age gate */
 #agegate{position:fixed;inset:0;background:rgba(26,26,26,.97);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
 #agegate .card{background:var(--charcoal-2);border:1px solid var(--line);max-width:440px;text-align:center;padding:44px 36px}
