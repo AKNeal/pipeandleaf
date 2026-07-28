@@ -7,8 +7,18 @@ const SLUGS = {
   'old-steese': 'pipe-leaf-old-steese',
 };
 
+function productImage(m) {
+  const u = m.avatar_image?.large_url || m.avatar_image?.original_url || null;
+  if (!u) return null;
+  // Weedmaps uses placeholder art and "Product example" stock shots â skip those.
+  if (u.includes('static/placeholders') || u.includes('txt64=')) return null;
+  return u.split('?')[0] + '?fit=crop&w=400&h=400&auto=format';
+}
+
 export function slim(m) {
   return {
+    img: productImage(m),
+    deal: m.current_deal_title || null,
     name: m.name,
     brand: m.brand_endorsement?.brand_name || null,
     type: m.category?.name || null, // Indica / Sativa / Hybrid / etc.
