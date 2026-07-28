@@ -81,25 +81,30 @@
   #menu-search:focus{border-color:var(--olive)}
   #menu-sort{background:var(--charcoal-2);border:1px solid var(--line);color:var(--muted);font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:11px 12px;outline:none;cursor:pointer}
   .jumpbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  .jumpbar a{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:6px 12px;text-decoration:none;transition:border-color .15s,color .15s}
+  .jumpbar a{display:inline-flex;align-items:center;gap:7px;font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:6px 12px;text-decoration:none;transition:border-color .15s,color .15s}
   .jumpbar a:hover{border-color:var(--olive-bright);color:var(--olive-bright)}
+
+  /* Icons */
+  .ico{display:inline-block;width:16px;height:16px;flex:none;line-height:0}
+  .ico svg{display:block;width:100%;height:100%}
+  .ico.lg{width:30px;height:30px;color:var(--olive-bright)}
   .menu-status{font-size:.82rem;color:var(--muted);margin-top:12px}
   .menu-status .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--olive-bright);margin-right:7px;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
   /* Category sections */
   section.catsec{padding:46px 0 8px;scroll-margin-top:150px}
-  .catsec .head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px}
-  .catsec .head .icon{font-size:1.5rem}
+  .catsec .head{display:flex;align-items:center;gap:13px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px}
   .catsec h2{font-size:1.5rem}
   .catsec .count{font-family:'Oswald',sans-serif;color:var(--muted);font-size:.85rem;letter-spacing:.12em}
   .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
   .item{background:var(--charcoal-2);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
   .item:hover{transform:translateY(-4px);border-color:var(--olive);box-shadow:0 12px 28px rgba(0,0,0,.35)}
   .thumb{position:relative;aspect-ratio:4/3;background:linear-gradient(160deg,#3a3a3a,#2c2c2c);display:flex;align-items:center;justify-content:center;overflow:hidden}
-  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
   .item:hover .thumb img{transform:scale(1.05)}
-  .thumb .ph{font-size:2.2rem;opacity:.5}
+  .thumb .ph{position:absolute;inset:0;width:auto;height:auto;display:flex;align-items:center;justify-content:center;color:var(--olive-bright);opacity:.4}
+  .thumb .ph svg{width:34%;height:34%;stroke-width:1.2}
   .thumb .deal-tag{position:absolute;left:0;bottom:0;background:var(--olive);color:var(--white);font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .item .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .item .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
@@ -229,18 +234,33 @@
   try{ if(sessionStorage.getItem('pl_age_ok')==='1') enterSite(); }catch(e){}
 
   (function(){
+    var S = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">';
+    var PATHS = {
+      flower: S+'<path d="M12 21v-7"/><path d="M12 14c-1.6-3.4-1.3-7.2 0-11 1.3 3.8 1.6 7.6 0 11z"/><path d="M12 14C9.6 11.6 7.6 8.6 6.4 5.2 9.4 6.6 11.4 10 12 14z"/><path d="M12 14c2.4-2.4 4.4-5.4 5.6-8.8C14.6 6.6 12.6 10 12 14z"/><path d="M12 14c-3-1-6-2.8-8.4-5.2 3.2.4 6.4 2 8.4 5.2z"/><path d="M12 14c3-1 6-2.8 8.4-5.2-3.2.4-6.4 2-8.4 5.2z"/></svg>',
+      joint: S+'<path d="M2.5 19.5 15 7l2 2L4.5 21.5z"/><path d="m5.5 16.5 2 2"/><path d="M16.4 5.8c1-1 .5-2.1 0-2.6"/><path d="M18.6 8c1-1 2.1-.5 2.6 0"/></svg>',
+      infused: S+'<path d="M2.5 19.5 15 7l2 2L4.5 21.5z"/><path d="m5.5 16.5 2 2"/><path d="M16.4 5.8c1-1 .5-2.1 0-2.6"/><path d="m19.6 12.4.8 1.8 1.8.8-1.8.8-.8 1.8-.8-1.8-1.8-.8 1.8-.8z"/></svg>',
+      vape: S+'<rect x="9.9" y="2" width="4.2" height="3.4" rx="1.2"/><path d="M9.4 5.4h5.2v10.2H9.4z"/><path d="m9.4 15.6 2.6 4.6 2.6-4.6"/><path d="M12 8.2v4"/></svg>',
+      concentrate: S+'<path d="M12 3s6.5 7.2 6.5 11a6.5 6.5 0 0 1-13 0C5.5 10.2 12 3 12 3z"/><path d="m8.8 15.2 3.2-3.2 3.2 3.2"/></svg>',
+      edible: S+'<circle cx="9.6" cy="4.3" r="1.4"/><circle cx="14.4" cy="4.3" r="1.4"/><circle cx="12" cy="7.7" r="3.1"/><ellipse cx="12" cy="15.6" rx="4.1" ry="5"/><circle cx="6.7" cy="12.7" r="1.8"/><circle cx="17.3" cy="12.7" r="1.8"/><circle cx="9.2" cy="20.5" r="1.7"/><circle cx="14.8" cy="20.5" r="1.7"/></svg>',
+      drink: S+'<ellipse cx="12" cy="4.5" rx="4.5" ry="1.6"/><path d="M7.5 4.5v14.4a4.5 1.6 0 0 0 9 0V4.5"/><path d="M11 4.1h2.4"/><path d="M7.9 10.5h8.2"/></svg>',
+      wellness: S+'<rect x="10.2" y="2" width="3.6" height="3" rx="1.1"/><path d="M10.9 5h2.2v2h-2.2z"/><path d="M8.8 7h6.4v11.2a2 2 0 0 1-2 2h-2.4a2 2 0 0 1-2-2z"/><path d="M8.8 13.6h6.4"/></svg>',
+      gear: S+'<path d="M10.5 3.5h3V11l3.3 9.5H7.2L10.5 11z"/><path d="M9.8 3.5h4.4"/><path d="M13.5 9.2 17.2 7"/><path d="m16.4 5.3 2.7 1.6-1.1 1.9-2.7-1.6z"/><path d="M8.6 17.5h6.8"/></svg>',
+      other: S+'<path d="M4 20c0-8 5-13 16-14 0 10-5 15-13 15H4z"/><path d="M4 20c3-5 7-8 12-9.5"/></svg>'
+    };
+    function ico(key, cls){ return '<span class="ico'+(cls?' '+cls:'')+'">'+(PATHS[key]||PATHS.other)+'</span>'; }
+
     var CATS = [
-      {name:'Flower', icon:'🌿', slug:'flower'},
-      {name:'Pre-rolls', icon:'🚬', slug:'pre-rolls'},
-      {name:'Infused Pre-rolls', icon:'🔥', slug:'infused-pre-rolls'},
-      {name:'Vape pens', icon:'🖊️', slug:'vape-pens'},
-      {name:'Concentrates', icon:'💎', slug:'concentrates'},
-      {name:'Edibles', icon:'🍫', slug:'edibles'},
-      {name:'Drinks', icon:'🥤', slug:'drinks'},
-      {name:'Wellness', icon:'🧴', slug:'wellness'},
-      {name:'Gear', icon:'🫧', slug:'gear'},
-      {name:'Accessories', icon:'🫧', slug:'accessories'},
-      {name:'Other', icon:'🍃', slug:'other'}
+      {name:'Flower', icon:'flower', slug:'flower'},
+      {name:'Pre-rolls', icon:'joint', slug:'pre-rolls'},
+      {name:'Infused Pre-rolls', icon:'infused', slug:'infused-pre-rolls'},
+      {name:'Vape pens', icon:'vape', slug:'vape-pens'},
+      {name:'Concentrates', icon:'concentrate', slug:'concentrates'},
+      {name:'Edibles', icon:'edible', slug:'edibles'},
+      {name:'Drinks', icon:'drink', slug:'drinks'},
+      {name:'Wellness', icon:'wellness', slug:'wellness'},
+      {name:'Gear', icon:'gear', slug:'gear'},
+      {name:'Accessories', icon:'gear', slug:'accessories'},
+      {name:'Other', icon:'other', slug:'other'}
     ];
     var PREVIEW = 8;
     var cache = {};
@@ -272,7 +292,7 @@
     function catDef(name){
       var n = String(name||'').toLowerCase();
       for(var i=0;i<CATS.length;i++) if(CATS[i].name.toLowerCase()===n) return CATS[i];
-      return {name:name||'Other', icon:'🍃', slug:slugify(name)};
+      return {name:name||'Other', icon:'other', slug:slugify(name)};
     }
 
     function load(loc){
@@ -303,11 +323,11 @@
       var price = m.price!=null
         ? '<div class="price">'+(m.was?'<span class="was">'+money(m.was)+'</span>':'')+money(m.price)+(m.label?'<small>'+esc(m.label)+'</small>':'')+'</div>'
         : '<div class="price"><small>in store</small></div>';
-      var icon = catDef(m.cat).icon;
-      var thumb = m.img
-        ? '<div class="thumb"><img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" loading="lazy" onerror="this.parentNode.innerHTML=\'<span class=&quot;ph&quot;>'+icon+'</span>\'">'
-        : '<div class="thumb"><span class="ph">'+icon+'</span>';
-      thumb += (m.deal?'<span class="deal-tag">'+esc(m.deal)+'</span>':'') + '</div>';
+      var thumb = '<div class="thumb">'
+        + ico(catDef(m.cat).icon, 'ph')
+        + (m.img ? '<img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" loading="lazy" onerror="this.remove()">' : '')
+        + (m.deal?'<span class="deal-tag">'+esc(m.deal)+'</span>':'')
+        + '</div>';
       return '<div class="item">'+thumb+'<div class="body"><div class="top"><h3>'+esc(m.name)+'</h3>'+price+'</div>'
         + (m.brand?'<div class="brand">'+esc(m.brand)+'</div>':'')
         + '<div class="meta">'+chips+'</div></div></div>';
@@ -339,7 +359,7 @@
       // jumpbar
       $jump.innerHTML = order.map(function(n){
         var c = catDef(n);
-        return '<a href="#'+c.slug+'">'+c.icon+' '+esc(n)+' ('+groups[n].length+')</a>';
+        return '<a href="#'+c.slug+'">'+ico(c.icon)+esc(n)+' ('+groups[n].length+')</a>';
       }).join('');
 
       // sections
@@ -353,7 +373,7 @@
         var more = (!expanded && list.length > PREVIEW)
           ? '<div class="sec-more"><button data-cat="'+esc(n)+'">Show all '+list.length+' '+esc(n)+'</button></div>' : '';
         return '<section class="catsec" id="'+c.slug+'">'
-          + '<div class="head"><span class="icon">'+c.icon+'</span><h2>'+esc(n)+'</h2><span class="count">'+list.length+' products</span></div>'
+          + '<div class="head">'+ico(c.icon,'lg')+'<h2>'+esc(n)+'</h2><span class="count">'+list.length+' products</span></div>'
           + '<div class="items">'+slice.map(card).join('')+'</div>'
           + more
           + '</section>';
