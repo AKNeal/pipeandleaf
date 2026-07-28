@@ -1,0 +1,129 @@
+/* Pipe & Leaf — shared shell for Learn pages */
+:root{
+  --charcoal:#333333;
+  --charcoal-2:#3d3d3d;
+  --charcoal-3:#2a2a2a;
+  --olive:#768248;
+  --olive-bright:#93a15c;
+  --white:#f5f4f1;
+  --muted:#a8a8a3;
+  --line:rgba(255,255,255,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--charcoal);color:var(--white);line-height:1.65}
+h1,h2,h3,h4{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:500;letter-spacing:.06em}
+.amp{font-family:'Playfair Display',serif;font-style:italic;text-transform:none;font-weight:700}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.narrow{max-width:760px}
+.rule{display:block;width:120px;height:4px;background:var(--olive);border:none;margin:0 0 18px}
+.btn{display:inline-block;padding:13px 30px;border:none;font-family:'Oswald',sans-serif;font-weight:500;font-size:.92rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .15s,color .15s,border-color .15s}
+.btn-primary{background:var(--olive);color:var(--white)}
+.btn-primary:hover{background:var(--olive-bright)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.35)}
+.btn-ghost:hover{border-color:var(--olive-bright);color:var(--olive-bright)}
+body.gated{overflow:hidden}
+
+/* Age gate */
+#agegate{position:fixed;inset:0;background:rgba(26,26,26,.97);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
+#agegate .card{background:var(--charcoal-2);border:1px solid var(--line);max-width:440px;text-align:center;padding:44px 36px}
+#agegate .mark{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.5rem;letter-spacing:.22em;text-transform:uppercase;margin:14px 0}
+#agegate .bar{width:150px;height:4px;background:var(--olive);margin:0 auto}
+#agegate h2{font-size:1.25rem;margin:24px 0 8px;letter-spacing:.1em}
+#agegate p{color:var(--muted);font-size:.92rem;margin-bottom:26px}
+#agegate .btns{display:flex;gap:12px;justify-content:center}
+
+/* Nav */
+nav.top{position:sticky;top:0;z-index:50;background:rgba(42,42,42,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.15rem;text-decoration:none;letter-spacing:.24em;text-transform:uppercase}
+.logo .amp{color:var(--olive-bright);letter-spacing:0;font-size:1.2em}
+nav.top ul{display:flex;gap:26px;list-style:none}
+nav.top ul a{text-decoration:none;font-family:'Oswald',sans-serif;font-size:.8rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .15s}
+nav.top ul a:hover,nav.top ul a.active{color:var(--olive-bright)}
+#nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--white);font-size:1.1rem;padding:6px 12px;cursor:pointer}
+@media(max-width:820px){
+  nav.top ul{display:none}
+  #nav-toggle{display:block}
+  nav.top ul.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--charcoal-3);border-bottom:1px solid var(--line)}
+  nav.top ul.open li a{display:block;padding:16px 24px;border-top:1px solid var(--line)}
+}
+
+/* Page head */
+header.page{padding:64px 0 10px}
+.kicker{font-family:'Oswald',sans-serif;color:var(--olive-bright);letter-spacing:.28em;text-transform:uppercase;font-size:.75rem;margin-bottom:14px}
+h1.title{font-size:clamp(2rem,5vw,3rem);margin-bottom:12px;line-height:1.1}
+.lede{color:var(--muted);font-size:1.08rem;max-width:640px}
+
+/* Breadcrumb */
+.crumb{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding-top:26px}
+.crumb a{color:var(--olive-bright);text-decoration:none}
+
+/* Article body */
+article.body{padding:20px 0 40px}
+article.body h2{font-size:1.5rem;margin:48px 0 6px}
+article.body h2:first-child{margin-top:16px}
+article.body h3{font-size:1.05rem;color:var(--olive-bright);letter-spacing:.1em;margin:30px 0 6px}
+article.body p{margin-bottom:16px;color:#dcdcd7}
+article.body ul,article.body ol{margin:0 0 18px 20px;color:#dcdcd7}
+article.body li{margin-bottom:9px}
+article.body strong{color:var(--white)}
+article.body a{color:var(--olive-bright)}
+.h2rule{display:block;width:70px;height:3px;background:var(--olive);border:none;margin:0 0 18px}
+
+/* Callouts */
+.note{background:var(--charcoal-2);border:1px solid var(--line);border-left:3px solid var(--olive);padding:20px 24px;margin:26px 0}
+.note.warn{border-left-color:#c98b3f}
+.note h4{font-size:.85rem;letter-spacing:.14em;color:var(--olive-bright);margin-bottom:8px}
+.note.warn h4{color:#dda75c}
+.note p{margin:0;font-size:.95rem}
+
+/* Cards / grids */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:30px 0}
+.card{background:var(--charcoal-2);border:1px solid var(--line);border-top:3px solid var(--olive);padding:26px 24px;text-decoration:none;display:block;transition:transform .15s,border-color .15s}
+a.card:hover{transform:translateY(-4px);border-color:var(--olive)}
+.card h3{font-size:1.1rem;letter-spacing:.1em;margin-bottom:8px;color:var(--white)}
+.card p{font-size:.94rem;color:var(--muted);margin:0}
+.card .more{display:inline-block;margin-top:14px;font-family:'Oswald',sans-serif;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--olive-bright)}
+
+/* Definition rows (legend) */
+.defs{margin:24px 0}
+.def{display:grid;grid-template-columns:180px 1fr;gap:22px;padding:20px 0;border-bottom:1px solid var(--line)}
+.def:first-child{border-top:1px solid var(--line)}
+.def dt{font-family:'Oswald',sans-serif;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase;color:var(--olive-bright)}
+.def dd{color:#dcdcd7;font-size:.96rem}
+@media(max-width:660px){.def{grid-template-columns:1fr;gap:6px}}
+
+/* Chips */
+.chip{display:inline-block;font-family:'Oswald',sans-serif;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:3px 9px;margin:0 4px 4px 0}
+.chip.t-indica{border-color:rgba(155,138,193,.5);color:#b3a3d6}
+.chip.t-sativa{border-color:rgba(224,169,93,.5);color:#e0a95d}
+.chip.t-hybrid{border-color:rgba(147,161,92,.5);color:var(--olive-bright)}
+.chip.t-cbd{border-color:rgba(108,178,167,.5);color:#7fc4b9}
+.chip.sale{background:var(--olive);border-color:var(--olive);color:var(--white)}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse;margin:22px 0;font-size:.94rem}
+.tbl th,.tbl td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line)}
+.tbl th{font-family:'Oswald',sans-serif;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--olive-bright)}
+.tbl td{color:#dcdcd7}
+
+/* Brand list */
+.brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:26px 0}
+.brand{background:var(--charcoal-2);border:1px solid var(--line);padding:20px 22px}
+.brand h3{font-size:1rem;letter-spacing:.08em;margin-bottom:6px;color:var(--white)}
+.brand p{font-size:.9rem;color:var(--muted);margin:0}
+
+/* CTA strip */
+.cta-strip{background:var(--charcoal-3);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:48px 0;text-align:center;margin-top:50px}
+.cta-strip h2{font-size:1.6rem;margin-bottom:10px}
+.cta-strip p{color:var(--muted);margin-bottom:22px}
+.cta-strip .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+footer{padding:48px 0 60px;border-top:1px solid var(--line)}
+footer .mark{text-align:center;font-family:'Oswald',sans-serif;letter-spacing:.24em;text-transform:uppercase;font-size:.95rem;margin-bottom:6px}
+footer .mark .amp{color:var(--olive-bright);letter-spacing:0}
+footer .bar{width:90px;height:3px;background:var(--olive);margin:0 auto 26px}
+footer .warn{font-size:.78rem;color:#8b8b86;max-width:860px;margin:0 auto 20px;text-align:center}
+footer .fine{font-size:.8rem;color:var(--muted);text-align:center}
