@@ -49,7 +49,7 @@ export default async function handler(req, res) {
       if (meta.total_menu_items && items.length >= meta.total_menu_items) break;
     }
 
-    res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=3600');
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
     res.status(200).json({
       updated: meta.updated_at || null,
       total: meta.total_menu_items || items.length,
