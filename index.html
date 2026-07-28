@@ -9,6 +9,7 @@
 <meta property="og:description" content="Two locations in the heart of Fairbanks, Alaska. Flower, edibles, concentrates, carts, and glass — family-founded, budget-friendly.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://pipeandleaf.nealmedia.app">
+<meta property="og:image" content="https://images.weedmaps.com/dispensaries/000/325/836/mobile_hero/1738631718-pipe-and-leaf.jpg?w=1200&auto=format">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,500;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -59,12 +60,29 @@
   nav ul{display:flex;gap:30px;list-style:none}
   nav ul a{text-decoration:none;font-family:'Oswald',sans-serif;font-size:.82rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .15s}
   nav ul a:hover{color:var(--olive-bright)}
-  @media(max-width:720px){nav ul{display:none}}
+  #nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--white);font-size:1.1rem;padding:6px 12px;cursor:pointer}
+  @media(max-width:720px){
+    nav ul{display:none}
+    #nav-toggle{display:block}
+    nav ul.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--charcoal-3);border-bottom:1px solid var(--line)}
+    nav ul.open li a{display:block;padding:16px 24px;border-top:1px solid var(--line)}
+  }
 
-  /* Hero — mirrors the brand lockup */
-  header.hero{padding:120px 0 100px;text-align:center;background:
-    radial-gradient(900px 420px at 50% -10%, rgba(118,130,72,.16), transparent 65%),
-    var(--charcoal)}
+  /* Reviews */
+  #reviews .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:34px}
+  .rev{background:var(--charcoal-2);border:1px solid var(--line);border-top:3px solid var(--olive);padding:26px}
+  .rev .stars{color:var(--olive-bright);letter-spacing:.2em;font-size:.85rem}
+  .rev p{margin:12px 0 14px;color:#dcdcd7;font-size:1rem;line-height:1.55}
+  .rev cite{font-family:'Oswald',sans-serif;font-style:normal;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  /* Hero — mirrors the brand lockup, over storefront photo */
+  header.hero{position:relative;padding:130px 0 110px;text-align:center;background:var(--charcoal);overflow:hidden}
+  header.hero::before{content:'';position:absolute;inset:0;
+    background:url('https://images.weedmaps.com/dispensaries/000/325/836/mobile_hero/1738631718-pipe-and-leaf.jpg?w=1600&auto=format') center 40%/cover no-repeat;
+    opacity:.22;filter:saturate(.7)}
+  header.hero::after{content:'';position:absolute;inset:0;background:
+    linear-gradient(180deg, rgba(51,51,51,.55) 0%, rgba(51,51,51,.25) 45%, var(--charcoal) 100%)}
+  header.hero .wrap{position:relative;z-index:1}
   .hero .bar{width:min(420px,70%);height:5px;background:var(--olive);margin:0 auto}
   .hero h1{font-size:clamp(2.8rem,9vw,5.5rem);font-weight:500;letter-spacing:.18em;margin:34px 0;line-height:1}
   .hero h1 .amp{color:var(--white);font-size:.85em;letter-spacing:0}
@@ -102,19 +120,34 @@
   .menu-status{font-size:.82rem;color:var(--muted);margin:10px 0 20px}
   .menu-status .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--olive-bright);margin-right:7px;animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-  .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
-  .item{background:var(--charcoal-2);border:1px solid var(--line);padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color .15s}
-  .item:hover{border-color:var(--olive)}
+  .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .item{background:var(--charcoal-2);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+  .item:hover{transform:translateY(-4px);border-color:var(--olive);box-shadow:0 12px 28px rgba(0,0,0,.35)}
+  .thumb{position:relative;aspect-ratio:4/3;background:linear-gradient(160deg,#3a3a3a,#2c2c2c);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .item:hover .thumb img{transform:scale(1.05)}
+  .thumb .ph{font-size:2.2rem;opacity:.5}
+  .thumb .deal-tag{position:absolute;left:0;bottom:0;background:var(--olive);color:var(--white);font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .item .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
   .item .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-  .item h3{font-size:.95rem;letter-spacing:.04em;line-height:1.3;text-transform:none;font-family:'Inter',sans-serif;font-weight:600}
+  .item h3{font-size:.92rem;letter-spacing:.02em;line-height:1.3;text-transform:none;font-family:'Inter',sans-serif;font-weight:600}
   .item .price{font-family:'Oswald',sans-serif;font-size:1.05rem;color:var(--olive-bright);white-space:nowrap}
   .item .price small{color:var(--muted);font-size:.7rem;letter-spacing:.08em;display:block;text-align:right}
   .item .price .was{color:var(--muted);text-decoration:line-through;font-size:.8rem;margin-right:6px}
-  .item .meta{display:flex;flex-wrap:wrap;gap:6px}
+  .item .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
   .chip{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:3px 8px}
-  .chip.type{border-color:rgba(147,161,92,.5);color:var(--olive-bright)}
+  .chip.t-indica{border-color:rgba(155,138,193,.5);color:#b3a3d6}
+  .chip.t-sativa{border-color:rgba(224,169,93,.5);color:#e0a95d}
+  .chip.t-hybrid{border-color:rgba(147,161,92,.5);color:var(--olive-bright)}
+  .chip.t-cbd{border-color:rgba(108,178,167,.5);color:#7fc4b9}
   .chip.sale{background:var(--olive);border-color:var(--olive);color:var(--white)}
   .item .brand{font-size:.8rem;color:var(--muted)}
+  /* Skeleton loading */
+  .sk{background:var(--charcoal-2);border:1px solid var(--line);overflow:hidden}
+  .sk .sk-img{aspect-ratio:4/3;background:linear-gradient(90deg,#3a3a3a 25%,#454545 50%,#3a3a3a 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+  .sk .sk-line{height:12px;margin:14px 16px;background:linear-gradient(90deg,#3a3a3a 25%,#454545 50%,#3a3a3a 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+  .sk .sk-line.short{width:50%}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
   .menu-more{text-align:center;margin-top:26px}
   .menu-fallback{background:var(--charcoal-2);border:1px solid var(--line);border-top:3px solid var(--olive);padding:28px;text-align:center;color:var(--muted);margin-top:30px}
   .menu-fallback a{color:var(--olive-bright)}
@@ -175,7 +208,8 @@
 <nav>
   <div class="wrap">
     <a class="logo" href="#top">Pipe <span class="amp">&amp;</span> Leaf</a>
-    <ul>
+    <button id="nav-toggle" aria-label="Menu" onclick="document.querySelector('nav ul').classList.toggle('open')">☰</button>
+    <ul onclick="this.classList.remove('open')">
       <li><a href="#about">About</a></li>
       <li><a href="#menu">Menu</a></li>
       <li><a href="#perks">Perks</a></li>
@@ -287,6 +321,31 @@
         <div class="icon">💵</div>
         <h3>Everyday Deals</h3>
         <p>Unbeatable everyday pricing plus rotating deals across flower, carts, and edibles. Check the live menu or ask in store.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="section-kicker">Word on the Street</div>
+    <hr class="rule">
+    <h2 class="title">Locals keep coming back.</h2>
+    <div class="rev-grid">
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>"It was overall, the best customer service experience I've had in a long time."</p>
+        <cite>— Kim, Fairbanks · Weedmaps review</cite>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>"Very friendly, and knowledgeable staff makes for a enjoyable experience."</p>
+        <cite>— Treeman, Fairbanks · Weedmaps review</cite>
+      </div>
+      <div class="rev">
+        <div class="stars">★★★★★</div>
+        <p>"Literally the best prices in town!"</p>
+        <cite>— Kara, North Pole · Weedmaps review</cite>
       </div>
     </div>
   </div>
@@ -428,21 +487,32 @@
         return '<button data-cat="'+esc(c)+'" class="'+(state.cat===c?'active':'')+'">'+esc(c)+' ('+cats[c]+')</button>';
       }).join('');
 
+      var ICONS = {'Flower':'🌿','Pre-rolls':'🚬','Infused Pre-rolls':'🚬','Vape pens':'🖊️','Concentrates':'💎','Edibles':'🍫','Drinks':'🥤','Wellness':'🧴','Accessories':'🫧','Gear':'🫧','Other':'🍃'};
+      function typeClass(t){
+        t = (t||'').toLowerCase();
+        if(t.indexOf('indica')>-1) return 't-indica';
+        if(t.indexOf('sativa')>-1) return 't-sativa';
+        if(t.indexOf('cbd')>-1) return 't-cbd';
+        return 't-hybrid';
+      }
       var list = filtered(data);
       var slice = list.slice(0, state.shown);
       $items.innerHTML = slice.map(function(m){
         var chips = '';
-        if(m.type) chips += '<span class="chip type">'+esc(m.type)+'</span>';
-        if(m.sub && m.sub!==m.cat) chips += '<span class="chip">'+esc(m.sub)+'</span>';
+        if(m.type) chips += '<span class="chip '+typeClass(m.type)+'">'+esc(m.type)+'</span>';
         if(m.thc) chips += '<span class="chip">THC '+m.thc+(m.thcUnit||'%')+'</span>';
         if(m.cbd) chips += '<span class="chip">CBD '+m.cbd+'%</span>';
         if(m.sale) chips += '<span class="chip sale">Sale</span>';
         var price = m.price!=null
           ? '<div class="price">'+(m.was?'<span class="was">'+money(m.was)+'</span>':'')+money(m.price)+(m.label?'<small>'+esc(m.label)+'</small>':'')+'</div>'
           : '<div class="price"><small>in store</small></div>';
-        return '<div class="item"><div class="top"><h3>'+esc(m.name)+'</h3>'+price+'</div>'
+        var thumb = m.img
+          ? '<div class="thumb"><img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" loading="lazy" onerror="this.parentNode.innerHTML=\'<span class=&quot;ph&quot;>'+(ICONS[m.cat]||'🍃')+'</span>\'">'
+          : '<div class="thumb"><span class="ph">'+(ICONS[m.cat]||'🍃')+'</span>';
+        thumb += (m.deal?'<span class="deal-tag">'+esc(m.deal)+'</span>':'') + '</div>';
+        return '<div class="item">'+thumb+'<div class="body"><div class="top"><h3>'+esc(m.name)+'</h3>'+price+'</div>'
           + (m.brand?'<div class="brand">'+esc(m.brand)+'</div>':'')
-          + '<div class="meta">'+chips+'</div></div>';
+          + '<div class="meta">'+chips+'</div></div></div>';
       }).join('');
 
       $more.hidden = list.length <= state.shown;
@@ -451,9 +521,15 @@
         + (data.updated ? ' · updated ' + ago(data.updated) : '');
     }
 
+    function skeleton(){
+      var card = '<div class="sk"><div class="sk-img"></div><div class="sk-line"></div><div class="sk-line short"></div></div>';
+      $items.innerHTML = new Array(8).fill(card).join('');
+    }
+
     function refresh(){
       $fallback.hidden = true;
       $status.innerHTML = '<span class="dot"></span>Loading live menu…';
+      skeleton();
       load(state.loc).then(function(){ render(); }).catch(function(){
         $items.innerHTML = '';
         $pills.innerHTML = '';
