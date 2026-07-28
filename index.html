@@ -282,6 +282,7 @@
       </div>
       <input id="menu-search" type="search" placeholder="Search strains, brands, products…" aria-label="Search menu">
       <select id="menu-sort" aria-label="Sort menu">
+        <option value="featured">Featured</option>
         <option value="name">A – Z</option>
         <option value="price-asc">Price ↑</option>
         <option value="price-desc">Price ↓</option>
@@ -431,7 +432,7 @@
     var CAT_ORDER = ['Flower','Pre-rolls','Infused Pre-rolls','Vape pens','Concentrates','Edibles','Drinks','Wellness','Accessories','Other'];
     var PAGE = 36;
     var cache = {};                 // location -> {items, updated, total}
-    var state = { loc:'airport-way', cat:'All', q:'', sort:'name', shown:PAGE };
+    var state = { loc:'airport-way', cat:'All', q:'', sort:'featured', shown:PAGE };
 
     var $items = document.getElementById('menu-items');
     var $status = document.getElementById('menu-status');
@@ -469,6 +470,12 @@
         if(s==='price-asc') return (a.price==null)-(b.price==null) || a.price-b.price;
         if(s==='price-desc') return (a.price==null)-(b.price==null) || b.price-a.price;
         if(s==='thc') return (b.thc||0)-(a.thc||0);
+        if(s==='featured'){
+          var ca = CAT_ORDER.indexOf(a.cat), cb = CAT_ORDER.indexOf(b.cat);
+          if(ca===-1) ca=99; if(cb===-1) cb=99;
+          if(ca!==cb) return ca-cb;
+          return (!!b.img)-(!!a.img) || a.name.localeCompare(b.name);
+        }
         return a.name.localeCompare(b.name);
       });
       return list;
@@ -501,7 +508,7 @@
         var chips = '';
         if(m.type) chips += '<span class="chip '+typeClass(m.type)+'">'+esc(m.type)+'</span>';
         if(m.thc) chips += '<span class="chip">THC '+m.thc+(m.thcUnit||'%')+'</span>';
-        if(m.cbd) chips += '<span class="chip">CBD '+m.cbd+'%</span>';
+        if(m.cbd) chips += '<span class="chip">CBD '+m.cbd+(m.cbdUnit||'%')+'</span>';
         if(m.sale) chips += '<span class="chip sale">Sale</span>';
         var price = m.price!=null
           ? '<div class="price">'+(m.was?'<span class="was">'+money(m.was)+'</span>':'')+money(m.price)+(m.label?'<small>'+esc(m.label)+'</small>':'')+'</div>'
