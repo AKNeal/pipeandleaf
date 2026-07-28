@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Menu | Pipe &amp; Leaf | Fairbanks, Alaska</title>
+<meta name="description" content="Browse Pipe &amp; Leaf's live menu — flower, pre-rolls, vapes, concentrates, edibles, and glass at both Fairbanks locations. Updated throughout the day. 21+ only.">
+<meta property="og:title" content="Live Menu | Pipe &amp; Leaf">
+<meta property="og:description" content="Today's flower, edibles, concentrates, carts, and glass at both Fairbanks locations — updated in real time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pipeandleaf.nealmedia.app/menu.html">
+<meta property="og:image" content="https://images.weedmaps.com/dispensaries/000/325/836/mobile_hero/1738631718-pipe-and-leaf.jpg?w=1200&auto=format">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,500;1,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23333333'/><rect x='15' y='24' width='70' height='6' fill='%23768248'/><rect x='15' y='70' width='70' height='6' fill='%23768248'/><text x='50' y='58' font-family='sans-serif' font-size='28' fill='white' text-anchor='middle' font-weight='bold'>P%26L</text></svg>">
+<style>
+  :root{
+    --charcoal:#333333;
+    --charcoal-2:#3d3d3d;
+    --charcoal-3:#2a2a2a;
+    --olive:#768248;
+    --olive-bright:#93a15c;
+    --white:#f5f4f1;
+    --muted:#a8a8a3;
+    --line:rgba(255,255,255,.1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--charcoal);color:var(--white);line-height:1.6}
+  h1,h2,h3{font-family:'Oswald',sans-serif;text-transform:uppercase;font-weight:500;letter-spacing:.06em}
+  .amp{font-family:'Playfair Display',serif;font-style:italic;text-transform:none;font-weight:700}
+  a{color:inherit}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+  .btn{display:inline-block;padding:13px 30px;border:none;font-family:'Oswald',sans-serif;font-weight:500;font-size:.92rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .15s,color .15s,border-color .15s}
+  .btn-primary{background:var(--olive);color:var(--white)}
+  .btn-primary:hover{background:var(--olive-bright)}
+  .btn-ghost{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{border-color:var(--olive-bright);color:var(--olive-bright)}
+  body.gated{overflow:hidden}
+
+  /* Age gate */
+  #agegate{position:fixed;inset:0;background:rgba(26,26,26,.97);z-index:100;display:flex;align-items:center;justify-content:center;padding:24px}
+  #agegate .card{background:var(--charcoal-2);border:1px solid var(--line);max-width:440px;text-align:center;padding:44px 36px}
+  #agegate .mark{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.5rem;letter-spacing:.22em;text-transform:uppercase;margin:14px 0}
+  #agegate .bar{width:150px;height:4px;background:var(--olive);margin:0 auto}
+  #agegate h2{font-size:1.25rem;margin:24px 0 8px;letter-spacing:.1em}
+  #agegate p{color:var(--muted);font-size:.92rem;margin-bottom:26px}
+  #agegate .btns{display:flex;gap:12px;justify-content:center}
+
+  /* Nav */
+  nav.top{position:sticky;top:0;z-index:50;background:rgba(42,42,42,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  nav.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-family:'Oswald',sans-serif;font-weight:500;font-size:1.15rem;text-decoration:none;letter-spacing:.24em;text-transform:uppercase}
+  .logo .amp{color:var(--olive-bright);letter-spacing:0;font-size:1.2em}
+  nav.top ul{display:flex;gap:30px;list-style:none}
+  nav.top ul a{text-decoration:none;font-family:'Oswald',sans-serif;font-size:.82rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);transition:color .15s}
+  nav.top ul a:hover,nav.top ul a.active{color:var(--olive-bright)}
+  #nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--white);font-size:1.1rem;padding:6px 12px;cursor:pointer}
+  @media(max-width:720px){
+    nav.top ul{display:none}
+    #nav-toggle{display:block}
+    nav.top ul.open{display:flex;position:absolute;top:64px;left:0;right:0;flex-direction:column;gap:0;background:var(--charcoal-3);border-bottom:1px solid var(--line)}
+    nav.top ul.open li a{display:block;padding:16px 24px;border-top:1px solid var(--line)}
+  }
+
+  /* Page head */
+  header.page{padding:64px 0 28px;text-align:left}
+  .section-kicker{font-family:'Oswald',sans-serif;color:var(--olive-bright);letter-spacing:.28em;text-transform:uppercase;font-size:.75rem;margin-bottom:14px}
+  .rule{display:block;width:120px;height:4px;background:var(--olive);border:none;margin:0 0 18px}
+  h1.title{font-size:clamp(2rem,5vw,3rem);margin-bottom:8px}
+  .page .sub{color:var(--muted);max-width:620px}
+
+  /* Controls */
+  .controls{position:sticky;top:64px;z-index:40;background:rgba(42,42,42,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:14px 0;margin-top:30px}
+  .controls .row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .loc-tabs{display:flex;border:1px solid var(--line)}
+  .loc-tabs button{font-family:'Oswald',sans-serif;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;background:transparent;color:var(--muted);border:none;padding:11px 20px;cursor:pointer;transition:background .15s,color .15s}
+  .loc-tabs button.active{background:var(--olive);color:var(--white)}
+  #menu-search{flex:1;min-width:170px;background:var(--charcoal-2);border:1px solid var(--line);color:var(--white);font-family:'Inter',sans-serif;font-size:.92rem;padding:11px 16px;outline:none}
+  #menu-search:focus{border-color:var(--olive)}
+  #menu-sort{background:var(--charcoal-2);border:1px solid var(--line);color:var(--muted);font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;padding:11px 12px;outline:none;cursor:pointer}
+  .jumpbar{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  .jumpbar a{font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:6px 12px;text-decoration:none;transition:border-color .15s,color .15s}
+  .jumpbar a:hover{border-color:var(--olive-bright);color:var(--olive-bright)}
+  .menu-status{font-size:.82rem;color:var(--muted);margin-top:12px}
+  .menu-status .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--olive-bright);margin-right:7px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+  /* Category sections */
+  section.catsec{padding:46px 0 8px;scroll-margin-top:150px}
+  .catsec .head{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:22px}
+  .catsec .head .icon{font-size:1.5rem}
+  .catsec h2{font-size:1.5rem}
+  .catsec .count{font-family:'Oswald',sans-serif;color:var(--muted);font-size:.85rem;letter-spacing:.12em}
+  .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+  .item{background:var(--charcoal-2);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}
+  .item:hover{transform:translateY(-4px);border-color:var(--olive);box-shadow:0 12px 28px rgba(0,0,0,.35)}
+  .thumb{position:relative;aspect-ratio:4/3;background:linear-gradient(160deg,#3a3a3a,#2c2c2c);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+  .item:hover .thumb img{transform:scale(1.05)}
+  .thumb .ph{font-size:2.2rem;opacity:.5}
+  .thumb .deal-tag{position:absolute;left:0;bottom:0;background:var(--olive);color:var(--white);font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .item .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .item .top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .item h3{font-size:.92rem;letter-spacing:.02em;line-height:1.3;text-transform:none;font-family:'Inter',sans-serif;font-weight:600}
+  .item .price{font-family:'Oswald',sans-serif;font-size:1.05rem;color:var(--olive-bright);white-space:nowrap}
+  .item .price small{color:var(--muted);font-size:.7rem;letter-spacing:.08em;display:block;text-align:right}
+  .item .price .was{color:var(--muted);text-decoration:line-through;font-size:.8rem;margin-right:6px}
+  .item .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto}
+  .chip{font-family:'Oswald',sans-serif;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);color:var(--muted);padding:3px 8px}
+  .chip.t-indica{border-color:rgba(155,138,193,.5);color:#b3a3d6}
+  .chip.t-sativa{border-color:rgba(224,169,93,.5);color:#e0a95d}
+  .chip.t-hybrid{border-color:rgba(147,161,92,.5);color:var(--olive-bright)}
+  .chip.t-cbd{border-color:rgba(108,178,167,.5);color:#7fc4b9}
+  .chip.sale{background:var(--olive);border-color:var(--olive);color:var(--white)}
+  .item .brand{font-size:.8rem;color:var(--muted)}
+  .sec-more{text-align:center;margin:22px 0 4px}
+  .sec-more button{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.35);padding:11px 26px;font-family:'Oswald',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:border-color .15s,color .15s}
+  .sec-more button:hover{border-color:var(--olive-bright);color:var(--olive-bright)}
+
+  /* Skeleton */
+  .sk{background:var(--charcoal-2);border:1px solid var(--line);overflow:hidden}
+  .sk .sk-img{aspect-ratio:4/3;background:linear-gradient(90deg,#3a3a3a 25%,#454545 50%,#3a3a3a 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+  .sk .sk-line{height:12px;margin:14px 16px;background:linear-gradient(90deg,#3a3a3a 25%,#454545 50%,#3a3a3a 75%);background-size:200% 100%;animation:shimmer 1.4s infinite}
+  .sk .sk-line.short{width:50%}
+  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+  .menu-fallback{background:var(--charcoal-2);border:1px solid var(--line);border-top:3px solid var(--olive);padding:28px;text-align:center;color:var(--muted);margin:40px 0}
+  .menu-fallback a{color:var(--olive-bright)}
+  .menu-note{margin:36px 0 0;text-align:center;color:var(--muted);font-size:.9rem}
+
+  footer{margin-top:70px;padding:48px 0 60px;border-top:1px solid var(--line)}
+  footer .mark{text-align:center;font-family:'Oswald',sans-serif;letter-spacing:.24em;text-transform:uppercase;font-size:.95rem;margin-bottom:6px}
+  footer .mark .amp{color:var(--olive-bright);letter-spacing:0}
+  footer .bar{width:90px;height:3px;background:var(--olive);margin:0 auto 26px}
+  footer .warn{font-size:.78rem;color:#8b8b86;max-width:860px;margin:0 auto 20px;text-align:center}
+  footer .fine{font-size:.8rem;color:var(--muted);text-align:center}
+</style>
+</head>
+<body class="gated">
+
+<!-- 21+ Age Gate -->
+<div id="agegate">
+  <div class="card">
+    <div class="bar"></div>
+    <div class="mark">Pipe <span class="amp">&amp;</span> Leaf</div>
+    <div class="bar"></div>
+    <h2>Are you 21 or older?</h2>
+    <p>You must be 21+ with valid ID to view this site and shop at Pipe &amp; Leaf. Cannabis is for adults 21 and over in Alaska.</p>
+    <div class="btns">
+      <button class="btn btn-primary" onclick="enterSite()">Yes, I'm 21+</button>
+      <a class="btn btn-ghost" href="https://www.google.com">No, exit</a>
+    </div>
+  </div>
+</div>
+
+<nav class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html">Pipe <span class="amp">&amp;</span> Leaf</a>
+    <button id="nav-toggle" aria-label="Menu" onclick="document.querySelector('nav.top ul').classList.toggle('open')">☰</button>
+    <ul onclick="this.classList.remove('open')">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="index.html#perks">Perks</a></li>
+      <li><a href="index.html#locations">Locations</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="page">
+  <div class="wrap">
+    <div class="section-kicker">The Menu</div>
+    <hr class="rule">
+    <h1 class="title">Today's Live Menu.</h1>
+    <p class="sub">Every product on this page comes straight from our live inventory and updates throughout the day. Prices shown before tax. In-store purchases only.</p>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="row">
+      <div class="loc-tabs" id="loc-tabs">
+        <button data-loc="airport-way" class="active">Airport Way</button>
+        <button data-loc="old-steese">Old Steese</button>
+      </div>
+      <input id="menu-search" type="search" placeholder="Search strains, brands, products…" aria-label="Search menu">
+      <select id="menu-sort" aria-label="Sort menu">
+        <option value="featured">Featured</option>
+        <option value="name">A – Z</option>
+        <option value="price-asc">Price ↑</option>
+        <option value="price-desc">Price ↓</option>
+        <option value="thc">THC %</option>
+      </select>
+    </div>
+    <div class="jumpbar" id="jumpbar"></div>
+    <div class="menu-status" id="menu-status"><span class="dot"></span>Loading live menu…</div>
+  </div>
+</div>
+
+<main class="wrap" id="menu-sections"></main>
+
+<div class="wrap">
+  <div class="menu-fallback" id="menu-fallback" hidden>
+    The live menu couldn't load right now. Browse today's selection directly:
+    <a href="https://weedmaps.com/dispensaries/pipe-and-leaf" target="_blank" rel="noopener">Airport Way</a> ·
+    <a href="https://weedmaps.com/dispensaries/pipe-leaf-old-steese" target="_blank" rel="noopener">Old Steese</a>
+  </div>
+  <p class="menu-note">Prices and availability update throughout the day. In-store purchases only — no online ordering. Questions? Call <a href="tel:9073287747" style="color:var(--olive-bright)">Airport Way</a> or <a href="tel:9074510043" style="color:var(--olive-bright)">Old Steese</a>.</p>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="mark">Pipe <span class="amp">&amp;</span> Leaf</div>
+    <div class="bar"></div>
+    <p class="warn">Marijuana has intoxicating effects and may be habit forming and addictive. Marijuana impairs concentration, coordination, and judgment — do not operate a vehicle or machinery under its influence. There are health risks associated with consumption of marijuana. For use only by adults twenty-one and older. Keep out of the reach of children. Marijuana should not be used by women who are pregnant or breast&nbsp;feeding.</p>
+    <p class="fine">© <span id="yr"></span> Pipe &amp; Leaf · Fairbanks, Alaska · Licensed recreational retail marijuana store · In-store purchases only · Valid ID required</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  function enterSite(){
+    document.getElementById('agegate').style.display = 'none';
+    document.body.classList.remove('gated');
+    try{ sessionStorage.setItem('pl_age_ok','1'); }catch(e){}
+  }
+  try{ if(sessionStorage.getItem('pl_age_ok')==='1') enterSite(); }catch(e){}
+
+  (function(){
+    var CATS = [
+      {name:'Flower', icon:'🌿', slug:'flower'},
+      {name:'Pre-rolls', icon:'🚬', slug:'pre-rolls'},
+      {name:'Infused Pre-rolls', icon:'🔥', slug:'infused-pre-rolls'},
+      {name:'Vape pens', icon:'🖊️', slug:'vape-pens'},
+      {name:'Concentrates', icon:'💎', slug:'concentrates'},
+      {name:'Edibles', icon:'🍫', slug:'edibles'},
+      {name:'Drinks', icon:'🥤', slug:'drinks'},
+      {name:'Wellness', icon:'🧴', slug:'wellness'},
+      {name:'Gear', icon:'🫧', slug:'gear'},
+      {name:'Accessories', icon:'🫧', slug:'accessories'},
+      {name:'Other', icon:'🍃', slug:'other'}
+    ];
+    var PREVIEW = 8;
+    var cache = {};
+    var state = { loc:'airport-way', q:'', sort:'featured', expanded:{} };
+
+    var $sections = document.getElementById('menu-sections');
+    var $status = document.getElementById('menu-status');
+    var $jump = document.getElementById('jumpbar');
+    var $fallback = document.getElementById('menu-fallback');
+
+    function esc(s){ var d=document.createElement('div'); d.textContent=s==null?'':String(s); return d.innerHTML; }
+    function money(n){ return '$' + (Math.round(n*100)/100).toFixed(2).replace(/\.00$/,''); }
+    function ago(iso){
+      if(!iso) return '';
+      var m = Math.max(0, Math.round((Date.now()-new Date(iso).getTime())/60000));
+      if(m<1) return 'just now';
+      if(m<60) return m+' min ago';
+      var h = Math.round(m/60);
+      return h+' hr'+(h>1?'s':'')+' ago';
+    }
+    function typeClass(t){
+      t = (t||'').toLowerCase();
+      if(t.indexOf('indica')>-1) return 't-indica';
+      if(t.indexOf('sativa')>-1) return 't-sativa';
+      if(t.indexOf('cbd')>-1) return 't-cbd';
+      return 't-hybrid';
+    }
+    function catDef(name){
+      for(var i=0;i<CATS.length;i++) if(CATS[i].name===name) return CATS[i];
+      return CATS[CATS.length-1];
+    }
+
+    function load(loc){
+      if(cache[loc]) return Promise.resolve(cache[loc]);
+      return fetch('/api/menu?location='+encodeURIComponent(loc))
+        .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function(d){ if(d.error) throw new Error(d.error); cache[loc]=d; return d; });
+    }
+
+    function sortList(list){
+      var s = state.sort;
+      list.sort(function(a,b){
+        if(s==='price-asc') return (a.price==null)-(b.price==null) || a.price-b.price;
+        if(s==='price-desc') return (a.price==null)-(b.price==null) || b.price-a.price;
+        if(s==='thc') return (b.thc||0)-(a.thc||0);
+        if(s==='featured') return (!!b.img)-(!!a.img) || a.name.localeCompare(b.name);
+        return a.name.localeCompare(b.name);
+      });
+      return list;
+    }
+
+    function card(m){
+      var chips = '';
+      if(m.type) chips += '<span class="chip '+typeClass(m.type)+'">'+esc(m.type)+'</span>';
+      if(m.thc) chips += '<span class="chip">THC '+m.thc+(m.thcUnit||'%')+'</span>';
+      if(m.cbd) chips += '<span class="chip">CBD '+m.cbd+(m.cbdUnit||'%')+'</span>';
+      if(m.sale) chips += '<span class="chip sale">Sale</span>';
+      var price = m.price!=null
+        ? '<div class="price">'+(m.was?'<span class="was">'+money(m.was)+'</span>':'')+money(m.price)+(m.label?'<small>'+esc(m.label)+'</small>':'')+'</div>'
+        : '<div class="price"><small>in store</small></div>';
+      var icon = catDef(m.cat).icon;
+      var thumb = m.img
+        ? '<div class="thumb"><img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" loading="lazy" onerror="this.parentNode.innerHTML=\'<span class=&quot;ph&quot;>'+icon+'</span>\'">'
+        : '<div class="thumb"><span class="ph">'+icon+'</span>';
+      thumb += (m.deal?'<span class="deal-tag">'+esc(m.deal)+'</span>':'') + '</div>';
+      return '<div class="item">'+thumb+'<div class="body"><div class="top"><h3>'+esc(m.name)+'</h3>'+price+'</div>'
+        + (m.brand?'<div class="brand">'+esc(m.brand)+'</div>':'')
+        + '<div class="meta">'+chips+'</div></div></div>';
+    }
+
+    function render(){
+      var data = cache[state.loc];
+      if(!data) return;
+      var q = state.q.toLowerCase();
+      var searching = q.length > 0;
+
+      // group by category
+      var groups = {};
+      data.items.forEach(function(m){
+        if(q && (m.name+' '+(m.brand||'')+' '+(m.sub||'')+' '+(m.type||'')).toLowerCase().indexOf(q)===-1) return;
+        (groups[m.cat] = groups[m.cat] || []).push(m);
+      });
+
+      // ordered category list: known order first, then any extras
+      var order = [];
+      CATS.forEach(function(c){ if(groups[c.name]) order.push(c.name); });
+      Object.keys(groups).forEach(function(n){ if(order.indexOf(n)===-1) order.push(n); });
+
+      // jumpbar
+      $jump.innerHTML = order.map(function(n){
+        var c = catDef(n);
+        return '<a href="#'+c.slug+'">'+c.icon+' '+esc(n)+' ('+groups[n].length+')</a>';
+      }).join('');
+
+      // sections
+      var shownTotal = 0;
+      $sections.innerHTML = order.map(function(n){
+        var c = catDef(n);
+        var list = sortList(groups[n].slice());
+        var expanded = searching || state.expanded[state.loc+'|'+n];
+        var slice = expanded ? list : list.slice(0, PREVIEW);
+        shownTotal += list.length;
+        var more = (!expanded && list.length > PREVIEW)
+          ? '<div class="sec-more"><button data-cat="'+esc(n)+'">Show all '+list.length+' '+esc(n)+'</button></div>' : '';
+        return '<section class="catsec" id="'+c.slug+'">'
+          + '<div class="head"><span class="icon">'+c.icon+'</span><h2>'+esc(n)+'</h2><span class="count">'+list.length+' products</span></div>'
+          + '<div class="items">'+slice.map(card).join('')+'</div>'
+          + more
+          + '</section>';
+      }).join('');
+
+      if(order.length===0){
+        $sections.innerHTML = '<p style="color:var(--muted);padding:60px 0;text-align:center">No products match your search.</p>';
+      }
+
+      $status.innerHTML = '<span class="dot"></span>' + shownTotal + ' of ' + data.total
+        + ' products · ' + (state.loc==='airport-way'?'Airport Way':'Old Steese')
+        + (data.updated ? ' · updated ' + ago(data.updated) : '');
+    }
+
+    function skeleton(){
+      var cardSk = '<div class="sk"><div class="sk-img"></div><div class="sk-line"></div><div class="sk-line short"></div></div>';
+      $sections.innerHTML = '<section class="catsec"><div class="items">'+new Array(8).fill(cardSk).join('')+'</div></section>';
+    }
+
+    function refresh(){
+      $fallback.hidden = true;
+      $status.innerHTML = '<span class="dot"></span>Loading live menu…';
+      skeleton();
+      load(state.loc).then(function(){ render(); }).catch(function(){
+        $sections.innerHTML = '';
+        $jump.innerHTML = '';
+        $status.innerHTML = '';
+        $fallback.hidden = false;
+      });
+    }
+
+    document.getElementById('loc-tabs').addEventListener('click', function(e){
+      var b = e.target.closest('button'); if(!b) return;
+      this.querySelectorAll('button').forEach(function(x){ x.classList.remove('active'); });
+      b.classList.add('active');
+      state.loc = b.dataset.loc;
+      refresh();
+    });
+    document.getElementById('menu-search').addEventListener('input', function(){
+      state.q = this.value.trim(); render();
+    });
+    document.getElementById('menu-sort').addEventListener('change', function(){
+      state.sort = this.value; render();
+    });
+    $sections.addEventListener('click', function(e){
+      var b = e.target.closest('.sec-more button'); if(!b) return;
+      state.expanded[state.loc+'|'+b.dataset.cat] = true;
+      render();
+    });
+
+    if(location.protocol==='file:'){
+      $status.innerHTML=''; $fallback.hidden=false;
+    } else {
+      refresh();
+    }
+  })();
+</script>
+</body>
+</html>
