@@ -27,6 +27,7 @@ export function slim(m) {
     thc: m.metrics?.aggregates?.thc ?? null,
     thcUnit: m.metrics?.aggregates?.thc_unit || '%',
     cbd: m.metrics?.aggregates?.cbd ?? null,
+    cbdUnit: m.metrics?.aggregates?.cbd_unit || '%',
     price: m.price?.price ?? null,
     label: m.price?.label || null,
     sale: !!m.price?.on_sale,
