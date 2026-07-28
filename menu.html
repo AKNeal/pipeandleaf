@@ -268,9 +268,11 @@
       if(t.indexOf('cbd')>-1) return 't-cbd';
       return 't-hybrid';
     }
+    function slugify(s){ return String(s||'other').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
     function catDef(name){
-      for(var i=0;i<CATS.length;i++) if(CATS[i].name===name) return CATS[i];
-      return CATS[CATS.length-1];
+      var n = String(name||'').toLowerCase();
+      for(var i=0;i<CATS.length;i++) if(CATS[i].name.toLowerCase()===n) return CATS[i];
+      return {name:name||'Other', icon:'🍃', slug:slugify(name)};
     }
 
     function load(loc){
@@ -325,9 +327,14 @@
       });
 
       // ordered category list: known order first, then any extras
+      var keys = Object.keys(groups);
       var order = [];
-      CATS.forEach(function(c){ if(groups[c.name]) order.push(c.name); });
-      Object.keys(groups).forEach(function(n){ if(order.indexOf(n)===-1) order.push(n); });
+      CATS.forEach(function(c){
+        keys.forEach(function(k){
+          if(k.toLowerCase()===c.name.toLowerCase() && order.indexOf(k)===-1) order.push(k);
+        });
+      });
+      keys.forEach(function(n){ if(order.indexOf(n)===-1) order.push(n); });
 
       // jumpbar
       $jump.innerHTML = order.map(function(n){
